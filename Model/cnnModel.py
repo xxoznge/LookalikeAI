@@ -68,7 +68,7 @@ model.compile(optimizer='adam',
 
 # 모델 학습
 batch_size = 16
-epochs = 200
+epochs = 100
 
 history = model.fit(X_train, y_train_encoded, epochs=epochs, batch_size=batch_size, validation_data=(X_val, y_val_encoded))
 
@@ -76,15 +76,22 @@ history = model.fit(X_train, y_train_encoded, epochs=epochs, batch_size=batch_si
 test_loss, test_acc = model.evaluate(X_test, y_test_encoded)
 print(f"Test accuracy: {test_acc}")
 
-# 모델 저장
-model.save('face_recognition_model.h5')
+# 모델 저장 시 네이티브 Keras 포맷으로 저장
+model.save('face_recognition_model.keras')
 
 # 손실 정보 추출
 train_loss = history.history['loss']
 val_loss = history.history['val_loss']
 
+# 정확도 정보 추출
+train_acc = history.history['accuracy']
+val_acc = history.history['val_accuracy']
+
 # 그래프 그리기
 plt.figure(figsize=(10, 5))
+
+# Loss 그래프
+plt.subplot(1, 2, 1)
 plt.plot(range(1, epochs + 1), train_loss, label='Train Loss', marker='o')
 plt.plot(range(1, epochs + 1), val_loss, label='Validation Loss', marker='o')
 plt.title('Training and Validation Loss')
@@ -92,4 +99,16 @@ plt.xlabel('Epochs')
 plt.ylabel('Loss')
 plt.legend()
 plt.grid(True)
+
+# Accuracy 그래프
+plt.subplot(1, 2, 2)
+plt.plot(range(1, epochs + 1), train_acc, label='Train Accuracy', marker='o')
+plt.plot(range(1, epochs + 1), val_acc, label='Validation Accuracy', marker='o')
+plt.title('Training and Validation Accuracy')
+plt.xlabel('Epochs')
+plt.ylabel('Accuracy')
+plt.legend()
+plt.grid(True)
+
+plt.tight_layout()
 plt.show()
