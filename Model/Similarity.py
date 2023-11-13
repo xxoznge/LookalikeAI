@@ -11,7 +11,7 @@ from sklearn.metrics.pairwise import cosine_similarity
 image_folder = 'C:/Users/SOJUNG/Desktop/LookalikeAI/croppingImages'
 
 # 미리 학습한 모델 로드
-model = load_model('face_recognition_model.keras')
+model = load_model('model.keras')
 
 # 모델에서 특성 벡터를 추출하는 새로운 모델 생성
 feature_extraction_model = Model(inputs=model.input, outputs=model.layers[-2].output)
@@ -67,7 +67,7 @@ for i, celebrity in enumerate(label_binarizer.classes_):
     feature_vectors = feature_extraction_model.predict(images_for_celebrity)
 
     # 특정 이미지에 대한 예측
-    user_image_path = 'C:/Users/SOJUNG/Desktop/LookalikeAI/test.jpg'
+    user_image_path = 'C:/Users/SOJUNG/Desktop/LookalikeAI/test2.png'
     user_image = cv2.imread(user_image_path)
 
     if user_image is not None:
@@ -91,6 +91,9 @@ for i, celebrity in enumerate(label_binarizer.classes_):
         celebrity_similarity_average = total_similarity / num_samples
         celebrity_similarity_averages.append((celebrity, celebrity_similarity_average))
         
+        # 유사도 평균 출력
+        print(f"\nSimilarity Average with {celebrity}: {celebrity_similarity_average}\n")
+
         for j in range(num_samples):
             print(f"Similarity with {celebrity} {j + 1}: {similarities[0, j]}")
     else:

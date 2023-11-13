@@ -3,6 +3,8 @@ import os
 import numpy as np
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import LabelBinarizer
+from keras.optimizers import Adam
+
 
 # 이미지 파일이 저장된 폴더 경로
 image_folder = 'C:/Users/SOJUNG/Desktop/LookalikeAI/croppingImages'
@@ -58,18 +60,16 @@ model = models.Sequential([
     layers.MaxPooling2D(2, 2),
     layers.Flatten(),
     layers.Dense(128, activation='relu'),
-    layers.Dense(len(label_binarizer.classes_), activation='softmax')
+    layers.Dense(20, activation='softmax')
 ])
 
-# 모델 컴파일
-model.compile(optimizer='adam',
+# 모델 컴파일 및 학습
+model.compile(optimizer=Adam(lr=0.001),
               loss='categorical_crossentropy',
               metrics=['accuracy'])
 
-# 모델 학습
 batch_size = 16
 epochs = 100
-
 history = model.fit(X_train, y_train_encoded, epochs=epochs, batch_size=batch_size, validation_data=(X_val, y_val_encoded))
 
 # 모델 평가
@@ -77,7 +77,7 @@ test_loss, test_acc = model.evaluate(X_test, y_test_encoded)
 print(f"Test accuracy: {test_acc}")
 
 # 모델 저장 시 네이티브 Keras 포맷으로 저장
-model.save('face_recognition_model.keras')
+model.save('model.keras')
 
 # 손실 정보 추출
 train_loss = history.history['loss']
@@ -112,3 +112,13 @@ plt.grid(True)
 
 plt.tight_layout()
 plt.show()
+
+# 훈련 데이터의 모양 출력
+print("X_train 모양:", X_train.shape)
+print("y_train_encoded 모양:", y_train_encoded.shape)
+
+# 모델 입력의 모양 출력
+print("모델 입력 모양:", model.input_shape)
+
+# 훈련 중 정보 출력
+history = model.fit(X_train, y_train_encoded, epochs=epochs, batch_size=batch_size, validation_data=(X_val, y_val_encoded))
