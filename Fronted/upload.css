@@ -1,0 +1,27 @@
+body {
+    text-align: center;
+    margin: 0;
+}
+
+#file {
+    display: none;
+}
+
+label.fileLabel {
+    cursor: pointer;
+    padding: 10px;
+    background-color: #9999;
+    color: #fff;
+    display: inline-block;
+}
+
+button {
+    margin-top: 10px;
+    padding: 10px;
+    cursor: pointer;
+}
+
+#fileName {
+    width: 100%;
+    margin-top: 10px;
+}
