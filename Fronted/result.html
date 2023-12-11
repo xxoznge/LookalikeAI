@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LOOKALIKE Result</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='result.css') }}">
+</head>
+<body>
+    <div class="container">
+        <div id="resultTitle">LOOKALIKE</div>
+        <div id="uploadInstructions">결과를 확인해보세요!</div>
+        <div id="result0">
+            <div id="result">
+                <p>가장 닮은 연예인</p>
+            </div>
+            <div id="result1">
+                <p>{{ result.most_similar_celebrity }}</p>
+            </div>
+            <div id="result2">
+                <p>유사도</p>
+            </div>
+            <div id="result3">
+                <p>{{ result.highest_similarity_average }}</p>
+            </div>
+        <img id="userImage" alt="User Image" src="/static/GoASung.jpg">
+        </div>
+        <a href="/">다시 시도하기</a>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const userImage = document.getElementById('userImage');
+            const resultImage = document.getElementById('resultImage');
+
+            // Get the user-uploaded image from localStorage
+            const userImageSrc = localStorage.getItem('userImage');
+            if (userImageSrc) {
+                userImage.src = userImageSrc;
+            } else {
+                userImage.alt = 'No User Image';
+            }
+
+            // 서버에서 전달한 결과 객체를 사용하여 표시
+            const result = JSON.parse('{{ result|tojson|safe }}');
+        });
+    </script>
+</body>
+</html>

@@ -1,35 +1,26 @@
+<!-- upload.html -->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lookalike</title>
-    <link rel="stylesheet" href="upload.css">
+    <title>LOOKALIKE Page</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='upload.css') }}">
 </head>
 <body>
     <div class="container">
-        <h1>LOOKALIKE</h1>
-        <p>당신의 연예인 닮은꼴을 찾아드립니다!</p>
-
-        <!-- 파일 업로드 폼 -->
-        <form id="uploadForm" action="/upload" method="post" enctype="multipart/form-data">
-            <div class="upload_text">
-                <label for="file" id="fileLabel">지금 당신의 사진을 업로드해보세요.</label>
-            </div>
-            <div class="upload">
-                <input id="fileName" class="form-control" value="파일 선택 없음" disabled="disabled">
-                <label for="file" class="fileLabel">파일 선택</label>
-                    <input type="file" id="file" name="file" accept="image/*" onchange="previewImage()">
-                </label>
-            </div>
-            <br>
-            <button type="button" onclick="uploadImage()">업로드</button>
+        <div id="lookalikeTitle">LOOKALIKE</div>
+        <div id="uploadInstructions">당신의 닮은 꼴을 찾아보세요!</div>
+        <!-- 파일 업로드 시 name을 'file'로 변경 -->
+        <form id="uploadForm" action="/" method="post" enctype="multipart/form-data">
+            <input type="file" name="file" accept="image/*" id="imageInput">
+            <div id="imagePreview"></div>
+            <p id="confirmationMessage">사진을 확인하셨나요?</p>
+            <button type="submit" id="uploadButton">사진 업로드</button>
         </form>
-
-        <!-- 업로드된 이미지 표시 -->
-        <div id="uploadedImageContainer"></div>
     </div>
-
-    <script src="upload.js"></script>
+    <script src="{{ url_for('static', filename='upload.js') }}"></script>
 </body>
 </html>
+

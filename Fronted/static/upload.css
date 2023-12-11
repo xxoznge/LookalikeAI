@@ -1,0 +1,73 @@
+body {
+  font-family: Arial, sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  margin: 0;
+  background-color: #f0f0f0;
+}
+
+.container {
+  text-align: center;
+}
+
+#lookalikeTitle {
+  font-size: 36px;
+  font-weight: bold;
+  color: #800080;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); /* 추가: 텍스트 그림자 설정 */
+}
+
+#uploadInstructions {
+  margin-top: 10px;
+  font-size: 18px;
+  color: #333;
+}
+
+#imageInput {
+  margin-top: 30px;
+  padding: 10px; 
+  border: 2px dashed #800080; /* 수정: 테두리 스타일을 점선으로 변경 */
+  border-radius: 5px; 
+  background-color: #fff; 
+  color: #333; 
+  cursor: pointer;
+}
+
+#imageInput:hover {
+  background-color: #800080; 
+  color: #fff; 
+}
+
+#imagePreview {
+  margin-top: 20px;
+}
+
+#imagePreview img {
+  max-width: 100%;
+  max-height: 300px;
+  margin-top: 10px;
+}
+
+#confirmationMessage {
+  margin-top: 10px;
+  font-size: 14px;
+  color: #666;
+}
+
+#uploadButton {
+  margin-top: 0px;
+  padding: 10px;
+  background-color: #800080;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  border-radius: 5px;
+  text-transform: uppercase; 
+}
+
+#uploadButton:hover {
+  background-color: #6a006a;
+}

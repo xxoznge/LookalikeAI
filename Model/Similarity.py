@@ -67,7 +67,7 @@ for i, celebrity in enumerate(label_binarizer.classes_):
     feature_vectors = feature_extraction_model.predict(images_for_celebrity)
 
     # 특정 이미지에 대한 예측
-    user_image_path = 'C:/Users/SOJUNG/Desktop/LookalikeAI/test2.png'
+    user_image_path = 'C:/Users/SOJUNG/Desktop/LookalikeAI/test/test.jpg'
     user_image = cv2.imread(user_image_path)
 
     if user_image is not None:
